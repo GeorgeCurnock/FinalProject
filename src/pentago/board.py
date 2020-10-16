@@ -8,11 +8,17 @@ class BoardTile(enum.Enum):
     WHITE = 1,
     BLACK = 2
 
+
 class BoardQuad(enum.Enum):
     TOPLEFT = 0,
-    TOPRIGHT = 0,
-    BOTTOMLEFT = 0,
-    BOTTOMRIGHT = 0
+    TOPRIGHT = 1,
+    BOTTOMLEFT = 2,
+    BOTTOMRIGHT = 3
+
+
+class BoardDirection(enum.Enum):
+    CLOCKWISE = 0,
+    ANTICLOCKWISE = 1
 
 
 class Board:
@@ -88,5 +94,3 @@ class Board:
             return 1
         else:
             return 0
-
-
