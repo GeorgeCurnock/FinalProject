@@ -9,6 +9,6 @@ class BoardSection(enum.Enum):
     BLACK = 2
 
 
-def create_board():
-    return np.full((6, 6), BoardSection.EMPTY.value, dtype=BoardSection)
-
+class Board:
+    def __init__(self):
+        self.matrix = np.full((6, 6), BoardSection.EMPTY.value, dtype=BoardSection)

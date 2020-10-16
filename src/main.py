@@ -1,9 +1,9 @@
-from pentago import board as board
+from pentago import board as b
 
 
 def main():
-    b = board.create_board()
-    print(b)
+    board = b.Board()
+    print(board.matrix)
 
 
 if __name__ == '__main__':
