@@ -3,7 +3,9 @@ from pentago import board as b
 
 def main():
     board = b.Board()
-    print(board.matrix)
+
+    while True:
+
 
 
 if __name__ == '__main__':
