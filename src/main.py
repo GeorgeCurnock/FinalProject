@@ -1,5 +1,5 @@
 from pentago import board as b
-from pentago import HumanPlayer as hp
+from pentago import human_player as hp
 
 
 def main():
