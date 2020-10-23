@@ -38,10 +38,57 @@ class TestBoard(unittest.TestCase):
                              b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ]]
         self.assertTrue(np.array_equal(board.matrix, one_stone_matrix))
 
-        #TODO Test placing stone out of bounds in x
-        #TODO Test placing stone out of bounds in y
-        #TODO Test placing stone in spot that currently has a stone
+    def test_place_stone_out_of_bounds_in_x(self):
+        board = b.Board()
+        board.place_stone(0, 7, b.BoardTile.WHITE.value)
+        one_stone_matrix_x = [[b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ]]
+        self.assertTrue(np.array_equal(board.matrix, one_stone_matrix_x))
 
+    def test_place_stone_out_of_bounds_in_y(self):
+        board = b.Board()
+        board.place_stone(7, 0, b.BoardTile.WHITE.value)
+        one_stone_matrix_y = [[b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                              [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                               b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ]]
+        self.assertTrue(np.array_equal(board.matrix, one_stone_matrix_y))
+
+    def test_place_stone_in_taken_tile(self):
+        board = b.Board()
+        board.place_stone(0, 0, b.BoardTile.WHITE.value)
+        board.place_stone(0, 0, b.BoardTile.BLACK.value)
+        one_stone_matrix_taken = [[b.BoardTile.WHITE.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                   b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                  [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                   b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                  [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                   b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                  [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                   b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                  [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                   b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                  [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                   b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ]]
+        self.assertTrue(np.array_equal(board.matrix, one_stone_matrix_taken))
 
     def test_rotate_quadrant_clockwise(self):
         board = b.Board()
@@ -81,6 +128,6 @@ class TestBoard(unittest.TestCase):
 
         self.assertTrue(np.array_equal(board.matrix, rotated_one_stone_matrix))
 
-        #TODO Test rotating in out of bounds direction
+        # TODO Test rotating in out of bounds direction
 
-        #TODO Test endgame condition for all possible wins/draws
+        # TODO Test endgame condition for all possible wins/draws

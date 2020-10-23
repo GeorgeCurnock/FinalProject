@@ -32,8 +32,9 @@ class Board:
         return self.matrix[x][y]
 
     def place_stone(self, x, y, value):
-        if self.matrix[y][x] is BoardTile.EMPTY.value:
-            self.set_grid_value(x, y, value)
+        if 6 > x >= 0 and 6 > y >= 0:
+            if self.matrix[y][x] is BoardTile.EMPTY.value:
+                self.set_grid_value(x, y, value)
 
     def rotate_quadrant(self, quad, direction):
         start_x, start_y = 0, 0
