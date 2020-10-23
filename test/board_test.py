@@ -171,4 +171,54 @@ class TestBoard(unittest.TestCase):
 
         self.assertTrue(np.array_equal(board.matrix, rotated_out_of_bounds_dir))
 
-        # TODO Test endgame condition for all possible wins/draws
+    def test_game_end_for_not_finished(self):
+        board = b.Board()
+        board.place_stone(0, 0, b.BoardTile.WHITE.value)
+        self.assertEqual(board.game_end(), 0)
+
+    def test_game_end_for_horizontal_win(self):
+        board = b.Board()
+        board.place_stone(0, 0, b.BoardTile.WHITE.value)
+        board.place_stone(1, 0, b.BoardTile.WHITE.value)
+        board.place_stone(2, 0, b.BoardTile.WHITE.value)
+        board.place_stone(3, 0, b.BoardTile.WHITE.value)
+        board.place_stone(4, 0, b.BoardTile.WHITE.value)
+        self.assertEqual(board.game_end(), 1)
+
+    def test_game_end_for_vertical_win(self):
+        board = b.Board()
+        board.place_stone(0, 0, b.BoardTile.WHITE.value)
+        board.place_stone(0, 1, b.BoardTile.WHITE.value)
+        board.place_stone(0, 2, b.BoardTile.WHITE.value)
+        board.place_stone(0, 3, b.BoardTile.WHITE.value)
+        board.place_stone(0, 4, b.BoardTile.WHITE.value)
+        self.assertEqual(board.game_end(), 1)
+
+    def test_game_end_for_diagonal_center_win(self):
+        board = b.Board()
+        board.place_stone(0, 0, b.BoardTile.WHITE.value)
+        board.place_stone(1, 1, b.BoardTile.WHITE.value)
+        board.place_stone(2, 2, b.BoardTile.WHITE.value)
+        board.place_stone(3, 3, b.BoardTile.WHITE.value)
+        board.place_stone(4, 4, b.BoardTile.WHITE.value)
+        self.assertEqual(board.game_end(), 1)
+
+    def test_game_end_for_diagonal_win(self):
+        board = b.Board()
+        board.place_stone(1, 0, b.BoardTile.WHITE.value)
+        board.place_stone(2, 1, b.BoardTile.WHITE.value)
+        board.place_stone(3, 2, b.BoardTile.WHITE.value)
+        board.place_stone(4, 3, b.BoardTile.WHITE.value)
+        board.place_stone(5, 4, b.BoardTile.WHITE.value)
+        self.assertEqual(board.game_end(), 1)
+
+    def test_game_end_for_draw(self):
+        board = b.Board()
+        for i in range(6):
+            for j in range(6):
+                board.place_stone(i, j, b.BoardTile.WHITE.value)
+        self.assertEqual(board.game_end(), 1)
+
+
+
+
