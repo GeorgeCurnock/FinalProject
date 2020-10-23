@@ -218,7 +218,3 @@ class TestBoard(unittest.TestCase):
             for j in range(6):
                 board.place_stone(i, j, b.BoardTile.WHITE.value)
         self.assertEqual(board.game_end(), 1)
-
-
-
-
