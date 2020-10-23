@@ -29,7 +29,7 @@ class Board:
         self.matrix[y][x] = value
 
     def get_grid_value(self, x, y):
-        return self.matrix[x][y]
+        return self.matrix[y][x]
 
     def place_stone(self, x, y, value):
         if 6 > x >= 0 and 6 > y >= 0:

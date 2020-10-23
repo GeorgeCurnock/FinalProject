@@ -1,11 +1,12 @@
 from pentago import board as b
 from pentago import human_player as hp
+from pentago import random_player as rp
 
 
 def main():
     board = b.Board()
     player1 = hp.HumanPlayer(None, b.BoardTile.WHITE.value)
-    player2 = hp.HumanPlayer(None, b.BoardTile.BLACK.value)
+    player2 = rp.RandomPlayer(None, b.BoardTile.BLACK.value)
     board.print_board()
 
     while True:
@@ -22,6 +23,8 @@ def main():
         game_over = board.game_end()
         if game_over == 2:
             break
+
+        board.print_board()
 
 
 if __name__ == '__main__':

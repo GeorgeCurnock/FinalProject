@@ -11,17 +11,13 @@ class RandomPlayer(p.Player):
         # Place a stone on the board
         while not valid_move:
             x, y = [np.random.randint(0, 6) for _ in range(2)]
-            if board.getGridValue(x - 1, y - 1) == b.BoardTile.EMPTY.value:
-                board.placeStone(x - 1, y - 1, self.colour)
+            if board.get_grid_value(x, y) == b.BoardTile.EMPTY.value:
+                print("RP placing at " + str(x) + ", " + str(y))
+                board.place_stone(x, y, self.colour)
                 valid_move = True
 
         # Rotate a quadrant
-        quad = 0
-        while (quad != 0) and (quad != 1) and (quad != 2) and (quad != 3):
-            quad = np.random.randint(0, 4)
-
-        direction = 0
-        while direction != 0 and direction != 1:
-            direction = np.random.randint(0, 2)
-
-        board.rotateQuadrant(quad, direction)
+        quad = np.random.randint(0, 4)
+        direction = np.random.randint(0, 2)
+        print("RP rotating quad " + str(quad) + " in direction " + str(direction))
+        board.rotate_quadrant(quad, direction)
