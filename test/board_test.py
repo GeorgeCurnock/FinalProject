@@ -128,6 +128,47 @@ class TestBoard(unittest.TestCase):
 
         self.assertTrue(np.array_equal(board.matrix, rotated_one_stone_matrix))
 
-        # TODO Test rotating in out of bounds direction
+    def test_rotate_quadrant_out_of_bounds_quadrant(self):
+        board = b.Board()
+        board.place_stone(0, 0, b.BoardTile.WHITE.value)
+        board.rotate_quadrant(4, 0)
+        rotated_out_of_bounds_quad = [[b.BoardTile.WHITE.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                       b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                      [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                       b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                      [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                       b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                      [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                       b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                      [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                       b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ],
+                                      [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                       b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, ]]
+        self.assertTrue(np.array_equal(board.matrix, rotated_out_of_bounds_quad))
+
+    def test_rotate_quadrant_out_of_bounds_direction(self):
+        board = b.Board()
+        board.place_stone(0, 0, b.BoardTile.WHITE.value)
+        board.rotate_quadrant(0, 3)
+        rotated_out_of_bounds_dir = [[b.BoardTile.WHITE.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, ],
+                                     [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, ],
+                                     [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, ],
+                                     [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, ],
+                                     [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, ],
+                                     [b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, b.BoardTile.EMPTY.value,
+                                      b.BoardTile.EMPTY.value, ]]
+
+        self.assertTrue(np.array_equal(board.matrix, rotated_out_of_bounds_dir))
 
         # TODO Test endgame condition for all possible wins/draws
