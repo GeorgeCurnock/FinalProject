@@ -25,17 +25,17 @@ class Board:
     def __init__(self):
         self.matrix = np.full((6, 6), BoardTile.EMPTY.value, dtype=BoardTile)
 
-    def setGridValue(self, x, y, value):
+    def set_grid_value(self, x, y, value):
         self.matrix[y][x] = value
 
-    def getGridValue(self, x, y):
+    def get_grid_value(self, x, y):
         return self.matrix[x][y]
 
-    def placeStone(self, x, y, value):
+    def place_stone(self, x, y, value):
         if self.matrix[y][x] is BoardTile.EMPTY.value:
-            self.setGridValue(x, y, value)
+            self.set_grid_value(x, y, value)
 
-    def rotateQuadrant(self, quad, direction):
+    def rotate_quadrant(self, quad, direction):
         startx, starty = 0, 0
         endx, endy = 6, 6
         direct = 0
@@ -71,7 +71,7 @@ class Board:
         quadrant = np.rot90(quadrant, direct)
         self.matrix[starty:endy, startx:endx] = quadrant
 
-    def gameEnd(self):
+    def game_end(self):
         diag1 = np.diag(self.matrix, k=-1).copy().tolist() + [0]
         diag2 = np.diag(self.matrix, k=1).copy().tolist() + [0]
         diag3 = np.diag(self.matrix).copy().tolist()
@@ -82,7 +82,7 @@ class Board:
         columns = np.rot90(self.matrix)
         IsGameOver = False
 
-        def boardcheck(matrix):
+        def board_check(matrix):
             for row in matrix:
                 if row[1] != 0:
                     if (row[1] == row[2]) and (row[1] == row[3]) and (row[1] == row[4]) and (
@@ -95,15 +95,15 @@ class Board:
                         return True
             return False
 
-        IsGameOver = boardcheck(self.matrix)
-        IsGameOver = IsGameOver or boardcheck(columns)
-        IsGameOver = IsGameOver or boardcheck(diagonals)
+        IsGameOver = board_check(self.matrix)
+        IsGameOver = IsGameOver or board_check(columns)
+        IsGameOver = IsGameOver or board_check(diagonals)
         if IsGameOver is True:
             return 1
         else:
             return 0
 
-    def printBoard(self):
+    def print_board(self):
         print("{:^12} | {:^12} | {:^12} | {:^12} | {:^12} | {:^12} | {:^12} |".format(" ", 0, 1, 2, 3, 4, 5))
         print("-" * 106)
         i = -1
@@ -115,7 +115,7 @@ class Board:
                             , BoardTile(row[4]).name, BoardTile(row[5]).name))
             print("-" * 106)
 
-    def printQuadrant(self, quad):
+    def print_quadrant(self, quad):
         switcher = {
             0: self.matrix[0:3, 0:3],
             1: self.matrix[3:6, 0:3],
