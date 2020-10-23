@@ -5,4 +5,4 @@ class Player:
         self.colour = colour
 
     def play(self, board):
-        return 0
+        pass

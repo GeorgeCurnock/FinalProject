@@ -36,40 +36,40 @@ class Board:
             self.set_grid_value(x, y, value)
 
     def rotate_quadrant(self, quad, direction):
-        startx, starty = 0, 0
-        endx, endy = 6, 6
+        start_x, start_y = 0, 0
+        end_x, end_y = 6, 6
         direct = 0
         if quad == BoardQuad.TOPLEFT.value:
             print("Rotating Top Left")
-            startx = 0
-            starty = 0
-            endx = 3
-            endy = 3
+            start_x = 0
+            start_y = 0
+            end_x = 3
+            end_y = 3
         elif quad == BoardQuad.TOPRIGHT.value:
-            startx = 3
-            starty = 0
-            endx = 6
-            endy = 3
+            start_x = 3
+            start_y = 0
+            end_x = 6
+            end_y = 3
         elif quad == BoardQuad.BOTTOMLEFT.value:
-            startx = 0
-            starty = 3
-            endx = 3
-            endy = 6
+            start_x = 0
+            start_y = 3
+            end_x = 3
+            end_y = 6
         elif quad == BoardQuad.BOTTOMRIGHT.value:
-            startx = 3
-            starty = 3
-            endx = 6
-            endy = 6
+            start_x = 3
+            start_y = 3
+            end_x = 6
+            end_y = 6
         else:
             print("Rotation stage not reached")
 
-        quadrant = self.matrix[starty:endy, startx:endx]
+        quadrant = self.matrix[start_y:end_y, start_x:end_x]
         if direction == BoardDirection.CLOCKWISE.value:
             direct = -1
         elif direction == BoardDirection.ANTICLOCKWISE.value:
             direct = 1
         quadrant = np.rot90(quadrant, direct)
-        self.matrix[starty:endy, startx:endx] = quadrant
+        self.matrix[start_y:end_y, start_x:end_x] = quadrant
 
     def game_end(self):
         diag1 = np.diag(self.matrix, k=-1).copy().tolist() + [0]
@@ -80,7 +80,7 @@ class Board:
         diag6 = np.diag(np.rot90(self.matrix), k=-1).copy().tolist() + [0]
         diagonals = np.array([diag1, diag2, diag3, diag4, diag5, diag6])
         columns = np.rot90(self.matrix)
-        IsGameOver = False
+        is_game_over = False
 
         def board_check(matrix):
             for row in matrix:
@@ -95,10 +95,10 @@ class Board:
                         return True
             return False
 
-        IsGameOver = board_check(self.matrix)
-        IsGameOver = IsGameOver or board_check(columns)
-        IsGameOver = IsGameOver or board_check(diagonals)
-        if IsGameOver is True:
+        is_game_over = board_check(self.matrix)
+        is_game_over = is_game_over or board_check(columns)
+        is_game_over = is_game_over or board_check(diagonals)
+        if is_game_over is True:
             return 1
         else:
             return 0
